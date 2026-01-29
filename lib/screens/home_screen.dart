@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import '../controller/home_controller.dart';
 import 'package:wordsy/widgets/buildHeader.dart';
 import 'package:wordsy/widgets/buildTags.dart';
+import 'package:wordsy/widgets/buildTodoCart.dart';
+import 'package:wordsy/widgets/buildNotesGrid.dart';
+import 'package:wordsy/widgets/buildBottomFloatingBar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,11 +34,17 @@ class HomeScreen extends StatelessWidget {
                             buildHeader(),
                             SizedBox(height: 20),
                             buildTages(),
+                            SizedBox(height: 25),
+                            buildTodoCart(controller),
+                            SizedBox(height: 25),
+                            buildNotesGrid(controller),
+                            SizedBox(height: 100),
                           ],
                         ),
                       ),
                     ),
             ),
+            buildBottomFloatingBar(),
           ],
         ),
       ),
