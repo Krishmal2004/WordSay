@@ -20,23 +20,30 @@ Widget buildBottomFloatingBar() {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.mic, color: Colors.white)),
-          SizedBox(width: 10,),
-          Container(
-            padding: EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Color(0xFF64D2FF),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              Icons.add,
-              color: Colors.black,
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.mic, color: Colors.white),
+          ),
+          SizedBox(width: 10),
+          Material(
+            color: Color(0xFF64D2FF),
+            shape: CircleBorder(),
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.add, color: Colors.black),
+              constraints: BoxConstraints(),
             ),
           ),
-          SizedBox(width: 10,),
-          IconButton(onPressed: (){}, icon: Icon(Icons.auto_awesome, color: Colors.white)),
-          SizedBox(width: 10,),
-          IconButton(onPressed: (){}, icon: Icon(Icons.settings, color: Colors.white)),
+          SizedBox(width: 10),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.auto_awesome, color: Colors.white),
+          ),
+          SizedBox(width: 10),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.settings, color: Colors.white),
+          ),
         ],
       ),
     ),
