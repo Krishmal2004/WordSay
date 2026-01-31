@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:get/get.dart';
+import 'package:wordsy/screens/todo_screen.dart';
 
 Widget buildArrowButton() {
   return Container(
@@ -13,7 +15,7 @@ Widget buildArrowButton() {
       size: 20,
     ),updated button*/
     child: IconButton(
-      onPressed: () {},
+      onPressed: () =>Get.toNamed('/todo'),
       icon: Icon(
         Icons.arrow_outward,
         color: Colors.white,

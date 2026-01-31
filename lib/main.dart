@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 //import 'screens/login.dart';
 //import 'screens/loadingScreen.dart';
-//import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'screens/index.dart';
+import 'screens/todo_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: IndexScreen(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => IndexScreen()),
+        GetPage(name: '/todo', page: () => TodoScreen()),
+      ],
     );
   }
 }
