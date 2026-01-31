@@ -21,6 +21,8 @@ Widget buildArrowButton() {
         color: Colors.white,
         size: 20,
       ),
+      constraints: BoxConstraints(),
+      padding: const EdgeInsets.all(10),
     ),
   );
 
