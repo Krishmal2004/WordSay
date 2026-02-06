@@ -1,6 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:wordsy/controller/home_controller.dart';
+import 'package:wordsy/widgets/TODO/todoTitle.dart';
 import 'package:wordsy/widgets/buildArrowButton.dart';
+import 'package:get/get.dart';
 
 Widget buildTodoCart(HomeController controller) {
   return Container(
@@ -32,6 +36,14 @@ Widget buildTodoCart(HomeController controller) {
             ),
             buildArrowButton(),
           ],
+        ),
+        //SizedBox(height: 20),
+        Obx(
+          () => Column(
+            children: controller.todo.map((item) {
+              return todoTitle(item, controller);
+            }).toList(),
+          ),
         ),
       ],
     ),
