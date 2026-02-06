@@ -8,7 +8,7 @@ class TodoController extends GetxController {
   final _supabase = Supabase.instance.client;
   final taskController = TextEditingController();
   var selectedDate = DateTime.now().obs;
-  var isAadding = false.obs;
+  var isAdding = false.obs;
 
   Future<void> chooseDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
@@ -24,7 +24,7 @@ class TodoController extends GetxController {
 
   Future<void> addTodo() async {
     if (taskController.text.trim().isEmpty) return;
-    isAadding.value = true;
+    isAdding.value = true;
     try {
       await _supabase.from('todos').insert({
         'task_name': taskController.text.trim(),
@@ -38,7 +38,7 @@ class TodoController extends GetxController {
     } catch (e) {
       Get.snackbar("Error", e.toString());
     } finally {
-      isAadding.value = false;
+      isAdding.value = false;
     }
   }
 }
