@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
+//import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:wordsy/widgets/NoteBook/buildSpiralRing.dart';
 
 class NoteBookScreen extends StatelessWidget {
@@ -32,6 +34,16 @@ class NoteBookScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        IconButton(
+                          icon: Icon(
+                            Icons.home_outlined,
+                            size: 30,
+                            color: Colors.brown,
+                          ),
+                          onPressed: () {
+                            Get.back();
+                          },
+                        ),
                         Text(
                           "Works",
                           style: TextStyle(
