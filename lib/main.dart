@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'screens/index.dart';
 import 'screens/todo_screen.dart';
+import 'screens/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => IndexScreen()),
+        GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/todo', page: () => TodoScreen()),
       ],
     );

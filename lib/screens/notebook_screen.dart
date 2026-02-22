@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // Automates date formatting
 import 'package:get/get.dart';
 import 'package:wordsy/widgets/NoteBook/buildSpiralRing.dart';
+import 'package:wordsy/controller/NoteBookController.dart';
 
 class NoteBookScreen extends StatelessWidget {
   const NoteBookScreen({super.key});
@@ -9,9 +10,13 @@ class NoteBookScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 1. Get current date and day automatically
+    final controller = Get.put(Notebookcontroller());
+    controller.fetchLatestNote();
     final DateTime now = DateTime.now();
     final String formattedDate = DateFormat('MMMM d, yyyy').format(now);
-    final String formattedDay = DateFormat('EEEE').format(now); // e.g., "Monday"
+    final String formattedDay = DateFormat(
+      'EEEE',
+    ).format(now); // e.g., "Monday"
 
     return Scaffold(
       backgroundColor: const Color(0xFFD7CCC8), // Wooden desk background
@@ -58,7 +63,8 @@ class NoteBookScreen extends StatelessWidget {
                     ],
                   ),
                   child: CustomPaint(
-                    painter: RuledPaperPainter(), // Draws blue lines and red margin
+                    painter:
+                        RuledPaperPainter(), // Draws blue lines and red margin
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(65, 30, 25, 20),
                       child: Column(
@@ -91,28 +97,50 @@ class NoteBookScreen extends StatelessWidget {
                                 ],
                               ),
                               IconButton(
-                                icon: const Icon(Icons.home_outlined, size: 32, color: Colors.brown),
-                                onPressed: () => Get.back(), // Navigates to home
+                                icon: const Icon(
+                                  Icons.home_outlined,
+                                  size: 32,
+                                  color: Colors.brown,
+                                ),
+                                onPressed: () =>
+                                    Get.back(), // Navigates to home
                               ),
                             ],
                           ),
                           const SizedBox(height: 40),
                           // Realistic Notepad Input
                           Expanded(
-                            child: TextField(
-                              maxLines: null,
-                              keyboardType: TextInputType.multiline,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                height: 1.67, // Aligns text perfectly with lines
-                                color: Colors.black87,
-                                fontFamily: 'Serif',
-                              ),
-                              decoration: const InputDecoration(
-                                hintText: "Start writing your ideas...",
-                                hintStyle: TextStyle(color: Colors.black26),
-                                border: InputBorder.none,
-                              ),
+                            child: Obx(
+                              () => controller.isLoading.value
+                                  ? const Center(
+                                      child: CircularProgressIndicator(),
+                                    )
+                                  : TextField(
+                                      controller:
+                                          TextEditingController(
+                                              text: controller.noteText.value,
+                                            )
+                                            ..selection =
+                                                TextSelection.collapsed(
+                                                  offset: controller
+                                                      .noteText
+                                                      .value
+                                                      .length,
+                                                ),
+                                      onChanged: (text) => controller.saveNote(
+                                        text,
+                                      ), // Real-time saving
+                                      maxLines: null,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        height: 1.67,
+                                        fontFamily: 'Serif',
+                                      ),
+                                      decoration: const InputDecoration(
+                                        hintText: "Start writing...",
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
                             ),
                           ),
                         ],
