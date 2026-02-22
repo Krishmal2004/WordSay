@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
     final controller = Get.put(HomeController());
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFD7CCC8),
       body: SafeArea(
         child: Stack(
           children: [
